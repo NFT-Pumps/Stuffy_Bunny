@@ -1,26 +1,30 @@
 module.exports = [
- 'Kream',
- 'KNFT',
- 
+    'SBunny',
+    'SNFT',
+
     '0x9C3f261e2cc4C88DfaC56A5B46cdbf767eE2f231',
     '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
-    'https://public-pre-ipfs.s3.amazonaws.com/TheKreamerCollection/assets/KreamerReveal.json',
-    'https://public-pre-ipfs.s3.amazonaws.com/TheKreamerCollection/json/',
+    'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/json/',
+    'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/general/reveal.json',
 
     [
-        ethers.utils.getAddress('0xC3ea7494c33AbCA4FcEa01331043311756b7e336'),
-        ethers.utils.getAddress('0x8912e40d291693C7A86C418D52b46766780C6989'),
-        ethers.utils.getAddress('0x6b3ba9F0475C646FDaF2Bc207C285a485B88A747'),
-        ethers.utils.getAddress('0xbE400D9A6f8140B51dE4B3b7AAb1DA4B9adec9a0'),
-        // ethers.utils.getAddress('0xC3ea7494c33AbCA4FcEa01331043311756b7e336'),
-        // ethers.utils.getAddress('0xC3ea7494c33AbCA4FcEa01331043311756b7e336')
+        ethers.utils.getAddress('0xf07839FAa0a863313bf217da333ac4d67aaB5923'),
+        ethers.utils.getAddress('0xEFd6E29eD1b602B4d0410bF008Bd667562DF1013'),
+        ethers.utils.getAddress('0xaDd734D1f9f8BC4d43b32fE4E3B414d55880bDFF'),
+        ethers.utils.getAddress('0x36CD5Dc24234332B3B7B2DC77AbC57242a05B7c9'),
+        ethers.utils.getAddress('0x79199bba2593bf4D3C8c1b39E32a666AF9C22Def'),
+        ethers.utils.getAddress('0x5B10229aDD9d8340D414246B0c9ab5784fCfb7FB'),
+        ethers.utils.getAddress('0x6A6a6e04579C93426A8e65e4268DF862Edc9bBF2'),
+        ethers.utils.getAddress('0x8912e40d291693C7A86C418D52b46766780C6989')
     ],
     [
-        26,
-        12,
-        10,
-        6,
-        // 5,
-        // 40
+        47,
+        25,
+        3,
+        3,
+        2,
+        3,
+        2,
+        15
     ]
 ]

@@ -154,10 +154,10 @@ if (true == true)
             it("Mints a presale token from Dapp", async function () {
 
                 const PurchaseArray = [
-                    { amount: 1, value: "0.05" },
-                    { amount: 1, value: "0.05" },
-                    { amount: 1, value: "0.05" },
-                    { amount: 1, value: "0.05" }
+                    { amount: 1, value: "0.07" },
+                    { amount: 1, value: "0.07" },
+                    { amount: 1, value: "0.07" },
+                    { amount: 1, value: "0.07" }
                 ];
 
                 //Enable Mint Whitelist
@@ -203,7 +203,7 @@ it("Can't Mint with Claim off", async function () {
     await expect(currentToken.whitelistClaimMint(1, 1,
         whitelistClaimPass[0]
         , {
-            value: ethers.utils.parseEther("0.55")
+            value: ethers.utils.parseEther("0.07")
         })).to.be.revertedWith("Claim Mint Closed");
 });
 
