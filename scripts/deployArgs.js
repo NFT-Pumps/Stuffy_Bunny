@@ -4,8 +4,8 @@ module.exports = [
 
     '0x9C3f261e2cc4C88DfaC56A5B46cdbf767eE2f231',
     '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
-    'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/json/',
-    'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/general/reveal.json',
+    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/assets/Unrevealed.json',
+    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/json/json',
 
     [
         ethers.utils.getAddress('0xf07839FAa0a863313bf217da333ac4d67aaB5923'),
