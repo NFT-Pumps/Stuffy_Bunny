@@ -1,6 +1,6 @@
 module.exports = [
-    'SBunny',
-    'SNFT',
+    'Stuffy Bunny NFT',
+    'SBNFT',
 
     '0x9C3f261e2cc4C88DfaC56A5B46cdbf767eE2f231',
     '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
