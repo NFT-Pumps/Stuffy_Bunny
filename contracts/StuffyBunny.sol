@@ -36,7 +36,7 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
     uint256 public whitelistMintMaxLimit = 50;
     uint256 public tokenPrice = 0.09 ether;
     uint256 public whitelistTokenPrice = 0.07 ether;
-    uint256 public maxWhitelistPassMints = 900;
+    uint256 public maxWhitelistPassMints = 5000;
 
     bool public publicMintIsOpen = false;
     bool public privateMintIsOpen = true;
