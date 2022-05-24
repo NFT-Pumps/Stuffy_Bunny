@@ -2,10 +2,11 @@ module.exports = [
     'Stuffy Bunny NFT',
     'SBNFT',
 
-    '0x9C3f261e2cc4C88DfaC56A5B46cdbf767eE2f231',
-    '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
+    '0x7E34E5798996bCd712d46Eb61b704CCA660f9489',
+    '0xc01aC67ba14F13Af4fCD5b4ba3784F39a703cda0',   
+    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/json/json/',
     'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/assets/Unrevealed.json',
-    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/json/json',
+
 
     [
         ethers.utils.getAddress('0xf07839FAa0a863313bf217da333ac4d67aaB5923'),
