@@ -23,6 +23,9 @@ async function getClaimCodes() {
     //const [owner, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20] = await ethers.getSigners();
 
     let presaleAddresses = [
+        { address: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', qty: 50 },
+        { address: '0x70997970c51812dc3a010c7d01b50e0d17dc79c8', qty: 50 },
+        { address: '0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc', qty: 50 },
         { address: '0x98a5EF89293ee3c5D24b00d7f71E8cD165892B1f', qty: 50 },
         { address: '0x76A1205358f0B759Ed640E76340185C7708DABEc', qty: 50 },
         { address: '0xF15031d57826B7a0a8e03bDe484e0Cd028E77cfa', qty: 50 },
@@ -317,7 +320,7 @@ async function getClaimCodes() {
 
     // make a new logger
     const myLogger = new Console({
-        stdout: fs.createWriteStream("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266-signed-coupons.txt"),
+        stdout: fs.createWriteStream("ProjectWhitelist-signed-coupons.txt"),
         stderr: fs.createWriteStream("errStdErr.txt"),
     });
 

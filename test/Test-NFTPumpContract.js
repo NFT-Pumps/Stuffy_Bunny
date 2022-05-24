@@ -10,16 +10,16 @@ let messageHash1 = ethers.utils.solidityKeccak256(['string'], [message1]);
 let messageHash2 = ethers.utils.solidityKeccak256(['string'], [message2]);
 
 let whitelistClaimPass = [{
-    r: '0xaba336e1347616cd15fd44720fd4bb9faaf3e3cf4fe653915b4dc57229264807',
-    s: '0x17eb41b6419bcd8f02e80ee9731a62eb4f073a227c088ab5010da8349eb350b3',
+    r: '0x8a29f78c34b09cd015b81e30bd37d72908d00fd8f8a6b7de688cf889f4697df1',
+    s: '0x02e9ec9f2fd78869235071791bff81d9e7b22e4427361a87e3ea96f7a4e5602e',
     v: 27
 }, {
-    r: '0x9b66010cdc6f118c81483c6c6179c9c1d81278c83c6e643c17bf984fdcd6b23f',
-    s: '0x31c0be7e59acc24ecfea78b59996b1642891370ffd9ab5840ec877cac1286364',
+    r: '0x8a29f78c34b09cd015b81e30bd37d72908d00fd8f8a6b7de688cf889f4697df1',
+    s: '0x02e9ec9f2fd78869235071791bff81d9e7b22e4427361a87e3ea96f7a4e5602e',
     v: 27
 }, {
-    r: '0x76cb241964b3b20ef678aeaeccbbca0a0fba271e03c4cbf1bee3b7bcac0f1c28',
-    s: '0x50499e74dc33a7d2e7eaa2f151d68e8db176fefdd266dad2c7908893fc151dc1',
+    r: '0x8a29f78c34b09cd015b81e30bd37d72908d00fd8f8a6b7de688cf889f4697df1',
+    s: '0x02e9ec9f2fd78869235071791bff81d9e7b22e4427361a87e3ea96f7a4e5602e',
     v: 27
 }]
 
@@ -44,7 +44,7 @@ if (true == true)
                 'Test Contract',
                 'Test',
                 '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
-                '0xf5e3D593FC734b267b313240A0FcE8E0edEBD69a',
+                '0xc01aC67ba14F13Af4fCD5b4ba3784F39a703cda0',
                 'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/json/',
                 'https://tmc-suits.s3.us-west-1.amazonaws.com/assets/general/reveal.json',
                 [
@@ -168,8 +168,8 @@ if (true == true)
 
                 for (let index = 0; index < PurchaseArray.length; index++) {
                     const element = PurchaseArray[index];
-                    await currentToken.whitelistClaimMint(element.amount, 255,
-                        whitelistClaimPass[1], { value: ethers.utils.parseEther(element.value) });
+                    await currentToken.whitelistClaimMint(element.amount, 50,
+                        whitelistClaimPass[0], { value: ethers.utils.parseEther(element.value) });
                 }
 
                 // await currentToken.whitelistClaimMint(
@@ -181,247 +181,248 @@ if (true == true)
                 expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
             });
 
-            if (false){
-                it("Not enough free mints remaining", async function() {
+            if (false) {
+                it("Not enough free mints remaining", async function () {
 
                     await expect(currentToken.whitelistClaimMint(100, 255,
                         whitelistClaimPass[1], { value: ethers.utils.parseEther("0.0") })).to.be.revertedWith("Not enough free mints remaining");
                 });
             }
+if(false)
+{
+            it("New Signer", async function () {
+                const [adminWallet, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20] = await ethers.getSigners();
 
-it("New Signer", async function () {
-    const [adminWallet, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20] = await ethers.getSigners();
-
-    let signature = await currentToken.setSignerAddress(adminWallet.address);
-});
-
-it("Can't Mint with Claim off", async function () {
-
-    //Disable Mint Whitelist
-    await currentToken.togglePresaleMint();
-
-    await expect(currentToken.whitelistClaimMint(1, 1,
-        whitelistClaimPass[0]
-        , {
-            value: ethers.utils.parseEther("0.07")
-        })).to.be.revertedWith("Claim Mint Closed");
-});
-
-it("Can't Mint with Public off", async function () {
-
-    //Disable Mint Whitelist
-    await currentToken.togglePublicMint();
-
-    await expect(currentToken.openMint(1,
-        {
-            value: ethers.utils.parseEther("0.55")
-        })).to.be.revertedWith("Public Mint Closed");
-});
-
-it("Stops Mint of a presale token from Dapp due to Mint quantity can't be greater than claimable", async function () {
-
-    //Enable Mint Whitelist
-    //await currentToken.togglePresaleMint();
-    await currentToken.togglePresaleMint();
-
-    await expect(currentToken.whitelistClaimMint(2, 1,
-        whitelistClaimPass[0]
-        , {
-            value: ethers.utils.parseEther("0.55")
-        })).to.be.revertedWith("Mint quantity can't be greater than claimable");
-});
-
-it("Stops Mint of a presale token from Dapp due to invalid Claim Amount", async function () {
-
-    //Enable Mint Whitelist
-    //await currentToken.togglePresaleMint();
-    // await currentToken.togglePresaleMint();
-
-    await expect(currentToken.whitelistClaimMint(1, 5,
-        whitelistClaimPass[0]
-        , {
-            value: ethers.utils.parseEther("0.55")
-        })).to.be.revertedWith("Invalid Pass");
-});
-
-it("Stops Mint of a presale token from Dapp due to invalid Pass", async function () {
-
-    //Enable Mint Whitelist
-    //await currentToken.togglePresaleMint();
-    // await currentToken.togglePresaleMint();
-
-    await expect(currentToken.whitelistClaimMint(1, 5,
-        whitelistClaimPass[1]
-        , {
-            value: ethers.utils.parseEther("0.55")
-        })).to.be.revertedWith("Invalid Pass");
-});
-
-it("Will not allow mint over threshold", async function () {
-
-
-    await currentToken.togglePublicMint();
-
-    const PurchaseArray = [
-        { amount: 51, value: "100" }
-    ];
-
-    const [adminWallet, userWallet] = await ethers.getSigners();
-
-    let signature1 = await adminWallet.signMessage(ethers.utils.arrayify(messageHash1));
-    let signature2 = await userWallet.signMessage(ethers.utils.arrayify(messageHash2));
-    let messageHash3 = ethers.utils.solidityKeccak256(['string'], [message1]);
-    //Step 4: Turn on Sales
-    //    const PreMintCount = await currentToken.balanceOf(adminWallet.address)
-    //      const totalSupply = await currentToken.totalSupply();
-
-    //  TotalAmount = +PreMintCount;
-
-    for (let index = 0; index < PurchaseArray.length; index++) {
-        const element = PurchaseArray[index];
-        await expect(currentToken.openMint(element.amount, { value: ethers.utils.parseEther(element.value) })).to.be.revertedWith('Mint amount too large');
-        TotalAmount = TotalAmount + element.amount;
-    }
-
-    //        const PostMintCount = await currentToken.balanceOf(adminWallet.address)
-    //          const totalSupply2 = await currentToken.totalSupply()4
-
-    //            expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
-});
-
-it("Mints free token", async function () {
-
-    const PurchaseArray = [
-        { amount: 1, value: "0.07" },
-        { amount: 2, value: "0.14" },
-        { amount: 100, value: "7" },
-        // { amount: 5, value: "0.35" },
-        // { amount: 10, value: "0.7" },
-        //{ amount: 100, value: "7" }                
-    ];
-
-    const [adminWallet, userWallet] = await ethers.getSigners();
-
-    const totalSupply = await currentToken.totalSupply();
-
-    for (let index = 0; index < PurchaseArray.length; index++) {
-        const element = PurchaseArray[index];
-        await currentToken.teamMint(userWallet.address, element.amount);
-        TotalAmount = TotalAmount + element.amount;
-    }
-    ;
-    const totalSupply2 = await currentToken.totalSupply();
-
-    expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
-});
-
-if (false)
-    it("Mints remaining tokens from Dapp", async function () {
-
-        const totalSupply = await currentToken.totalSupply();
-
-        RemainingMints = 3333 - totalSupply;
-
-        const [adminWallet, userWallet] = await ethers.getSigners();
-
-        //Step 4: Turn on Sales
-        const PreMintCount = await currentToken.balanceOf(adminWallet.address)
-
-        TotalAmount = +PreMintCount;
-
-        for (let index = 0; index < RemainingMints; index++) {
-            await currentToken.openMint(1, { value: ethers.utils.parseEther("0.05") });
-            TotalAmount = TotalAmount + 1;
+                let signature = await currentToken.setSignerAddress(adminWallet.address);
+            });
         }
+            it("Can't Mint with Claim off", async function () {
 
-        const PostMintCount = await currentToken.balanceOf(adminWallet.address);
-        const totalSupply2 = await currentToken.totalSupply();
+                //Disable Mint Whitelist
+                await currentToken.togglePresaleMint();
 
-        expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
-    });
+                await expect(currentToken.whitelistClaimMint(1, 50,
+                    whitelistClaimPass[0]
+                    , {
+                        value: ethers.utils.parseEther("0.07")
+                    })).to.be.revertedWith("Claim Mint Closed");
+            });
 
-// it("Can't mint over quantity", async function () {
+            it("Can't Mint with Public off", async function () {
 
-//     await expect(currentToken.openMint(1, { value: ethers.utils.parseEther("0.05") })).to.be.revertedWith("Not enough tokens remaining");
-// });
+                //Disable Mint Whitelist
+                await currentToken.togglePublicMint();
 
+                await expect(currentToken.openMint(1,
+                    {
+                        value: ethers.utils.parseEther("0.55")
+                    })).to.be.revertedWith("Public Mint Closed");
+            });
 
-it('Transfer four tokens to destination account', async () => {
-    const [adminWallet, userWallet] = await ethers.getSigners();
+            it("Stops Mint of a presale token from Dapp due to Mint quantity can't be greater than claimable", async function () {
 
-    const howManyToTransfer = 5;
-    const FirstBalance = await currentToken.balanceOf(adminWallet.address);
-    const SecondBalance = await currentToken.balanceOf(userWallet.address);
+                //Enable Mint Whitelist
+                //await currentToken.togglePresaleMint();
+                await currentToken.togglePresaleMint();
 
-    for (let index = 1; index <= howManyToTransfer; index++) {
-        await currentToken.transferFrom(adminWallet.address, userWallet.address, index);
-    }
+                await expect(currentToken.whitelistClaimMint(51, 50,
+                    whitelistClaimPass[0]
+                    , {
+                        value: ethers.utils.parseEther("190")
+                    })).to.be.revertedWith("Mint quantity can't be greater than claimable");
+            });
 
-    // expect(await currentToken.balanceOf(adminWallet.address)).to.eq(FirstBalance - howManyToTransfer);
-    // expect(await currentToken.balanceOf(userWallet.address)).to.eq(SecondBalance + howManyToTransfer);
-});
+            it("Stops Mint of a presale token from Dapp due to invalid Claim Amount", async function () {
 
-it('Set reveal address', async () => {
-    const hiddenMetadataUri = await currentToken.setHiddenMetadataUri(1);
-});
+                //Enable Mint Whitelist
+                //await currentToken.togglePresaleMint();
+                // await currentToken.togglePresaleMint();
 
-it('Will set Base URI and check the first token', async () => {
-    const [adminWallet, userWallet] = await ethers.getSigners();
+                await expect(currentToken.whitelistClaimMint(1, 45,
+                    whitelistClaimPass[0]
+                    , {
+                        value: ethers.utils.parseEther("0.55")
+                    })).to.be.revertedWith("Invalid Pass");
+            });
 
-    await currentToken.setBaseURI("ipfs://google.com/");
-    await currentToken.setRevealed(true);
-    const tokenURI = await currentToken.tokenURI(1);
-    expect(tokenURI).to.eq("ipfs://google.com/1.json");
-});
+            it("Stops Mint of a presale token from Dapp due to invalid Pass", async function () {
 
-it("Burn Token", async function () {
+                //Enable Mint Whitelist
+                //await currentToken.togglePresaleMint();
+                // await currentToken.togglePresaleMint();
 
-    //Enable Mint Whitelist
-    await currentToken.togglePresaleMint();
+                await expect(currentToken.whitelistClaimMint(1, 59,
+                    whitelistClaimPass[1]
+                    , {
+                        value: ethers.utils.parseEther("0.55")
+                    })).to.be.revertedWith("Invalid Pass");
+            });
 
-    const [adminWallet, userWallet] = await ethers.getSigners();
-
-    let signature = await adminWallet.signMessage(ethers.utils.arrayify(messageHash1));
-
-    const totalSupply = await currentToken.totalSupply();
-    await currentToken.burn(1);
-    const totalSupply2 = await currentToken.totalSupply();
-    //expect(parseInt(totalSupply)).to.greaterThan(parseInt(totalSupply2));
-});
-
-it("Set Multiple Parameters", async function () {
-    await currentToken.setParams('70000000000000000', '50000000000000000', '20', '5', true, true);
-});
-
-it("Gets Total Supply", async function () {
-    const [adminWallet, userWallet] = await ethers.getSigners();
-
-    const totalSupply = await currentToken.totalSupply();
-
-    expect(parseInt(totalSupply)).to.greaterThan(0);
-
-    console.log("Total Supply: " + parseInt(totalSupply))
-});
+            it("Will not allow mint over threshold", async function () {
 
 
-it("Get Money Withdraw", async function () {
-    const [owner, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20] = await ethers.getSigners();
+                await currentToken.togglePublicMint();
 
-    let ethBalance = ethers.utils.formatEther(await ethers.provider.getBalance(owner.address));
+                const PurchaseArray = [
+                    { amount: 51, value: "100" }
+                ];
 
-    console.log("Pre Withdrawal Balance: " + ethBalance);
+                const [adminWallet, userWallet] = await ethers.getSigners();
 
-    let contractEthBalance = ethers.utils.formatEther(await ethers.provider.getBalance(currentToken.address));
-    console.log("Contract Balance: " + contractEthBalance);
+                let signature1 = await adminWallet.signMessage(ethers.utils.arrayify(messageHash1));
+                let signature2 = await userWallet.signMessage(ethers.utils.arrayify(messageHash2));
+                let messageHash3 = ethers.utils.solidityKeccak256(['string'], [message1]);
+                //Step 4: Turn on Sales
+                //    const PreMintCount = await currentToken.balanceOf(adminWallet.address)
+                //      const totalSupply = await currentToken.totalSupply();
 
-    await currentToken.withdraw();
+                //  TotalAmount = +PreMintCount;
 
-    ethBalance = ethers.utils.formatEther(await ethers.provider.getBalance(owner.address));
+                for (let index = 0; index < PurchaseArray.length; index++) {
+                    const element = PurchaseArray[index];
+                    await expect(currentToken.openMint(element.amount, { value: ethers.utils.parseEther(element.value) })).to.be.revertedWith('Mint amount too large');
+                    TotalAmount = TotalAmount + element.amount;
+                }
 
-    console.log("Final Balance: " + ethBalance);
+                //        const PostMintCount = await currentToken.balanceOf(adminWallet.address)
+                //          const totalSupply2 = await currentToken.totalSupply()4
 
-    contractEthBalance = ethers.utils.formatEther(await ethers.provider.getBalance(currentToken.address));
-    console.log("Contract Balance: " + contractEthBalance);
-});
+                //            expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
+            });
+
+            it("Mints free token", async function () {
+
+                const PurchaseArray = [
+                    { amount: 1, value: "0.07" },
+                    { amount: 2, value: "0.14" },
+                    { amount: 100, value: "7" },
+                    // { amount: 5, value: "0.35" },
+                    // { amount: 10, value: "0.7" },
+                    //{ amount: 100, value: "7" }                
+                ];
+
+                const [adminWallet, userWallet] = await ethers.getSigners();
+
+                const totalSupply = await currentToken.totalSupply();
+
+                for (let index = 0; index < PurchaseArray.length; index++) {
+                    const element = PurchaseArray[index];
+                    await currentToken.teamMint(userWallet.address, element.amount);
+                    TotalAmount = TotalAmount + element.amount;
+                }
+                ;
+                const totalSupply2 = await currentToken.totalSupply();
+
+                expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
+            });
+
+            if (false)
+                it("Mints remaining tokens from Dapp", async function () {
+
+                    const totalSupply = await currentToken.totalSupply();
+
+                    RemainingMints = 3333 - totalSupply;
+
+                    const [adminWallet, userWallet] = await ethers.getSigners();
+
+                    //Step 4: Turn on Sales
+                    const PreMintCount = await currentToken.balanceOf(adminWallet.address)
+
+                    TotalAmount = +PreMintCount;
+
+                    for (let index = 0; index < RemainingMints; index++) {
+                        await currentToken.openMint(1, { value: ethers.utils.parseEther("0.05") });
+                        TotalAmount = TotalAmount + 1;
+                    }
+
+                    const PostMintCount = await currentToken.balanceOf(adminWallet.address);
+                    const totalSupply2 = await currentToken.totalSupply();
+
+                    expect(parseInt(totalSupply)).to.lessThan(parseInt(totalSupply2));
+                });
+
+            // it("Can't mint over quantity", async function () {
+
+            //     await expect(currentToken.openMint(1, { value: ethers.utils.parseEther("0.05") })).to.be.revertedWith("Not enough tokens remaining");
+            // });
+
+
+            it('Transfer four tokens to destination account', async () => {
+                const [adminWallet, userWallet] = await ethers.getSigners();
+
+                const howManyToTransfer = 5;
+                const FirstBalance = await currentToken.balanceOf(adminWallet.address);
+                const SecondBalance = await currentToken.balanceOf(userWallet.address);
+
+                for (let index = 1; index <= howManyToTransfer; index++) {
+                    await currentToken.transferFrom(adminWallet.address, userWallet.address, index);
+                }
+
+                // expect(await currentToken.balanceOf(adminWallet.address)).to.eq(FirstBalance - howManyToTransfer);
+                // expect(await currentToken.balanceOf(userWallet.address)).to.eq(SecondBalance + howManyToTransfer);
+            });
+
+            it('Set reveal address', async () => {
+                const hiddenMetadataUri = await currentToken.setHiddenMetadataUri(1);
+            });
+
+            it('Will set Base URI and check the first token', async () => {
+                const [adminWallet, userWallet] = await ethers.getSigners();
+
+                await currentToken.setBaseURI("ipfs://google.com/");
+                await currentToken.setRevealed(true);
+                const tokenURI = await currentToken.tokenURI(1);
+                expect(tokenURI).to.eq("ipfs://google.com/1.json");
+            });
+
+            it("Burn Token", async function () {
+
+                //Enable Mint Whitelist
+                await currentToken.togglePresaleMint();
+
+                const [adminWallet, userWallet] = await ethers.getSigners();
+
+                let signature = await adminWallet.signMessage(ethers.utils.arrayify(messageHash1));
+
+                const totalSupply = await currentToken.totalSupply();
+                await currentToken.burn(1);
+                const totalSupply2 = await currentToken.totalSupply();
+                //expect(parseInt(totalSupply)).to.greaterThan(parseInt(totalSupply2));
+            });
+
+            it("Set Multiple Parameters", async function () {
+                await currentToken.setParams('70000000000000000', '50000000000000000', '20', '5', true, true);
+            });
+
+            it("Gets Total Supply", async function () {
+                const [adminWallet, userWallet] = await ethers.getSigners();
+
+                const totalSupply = await currentToken.totalSupply();
+
+                expect(parseInt(totalSupply)).to.greaterThan(0);
+
+                console.log("Total Supply: " + parseInt(totalSupply))
+            });
+
+
+            it("Get Money Withdraw", async function () {
+                const [owner, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20] = await ethers.getSigners();
+
+                let ethBalance = ethers.utils.formatEther(await ethers.provider.getBalance(owner.address));
+
+                console.log("Pre Withdrawal Balance: " + ethBalance);
+
+                let contractEthBalance = ethers.utils.formatEther(await ethers.provider.getBalance(currentToken.address));
+                console.log("Contract Balance: " + contractEthBalance);
+
+                await currentToken.withdraw();
+
+                ethBalance = ethers.utils.formatEther(await ethers.provider.getBalance(owner.address));
+
+                console.log("Final Balance: " + ethBalance);
+
+                contractEthBalance = ethers.utils.formatEther(await ethers.provider.getBalance(currentToken.address));
+                console.log("Contract Balance: " + contractEthBalance);
+            });
         }
     })
