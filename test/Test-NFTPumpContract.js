@@ -95,6 +95,10 @@ if (true == true)
         if (true) {
             it("Update Vault", async function () {
                 await currentToken.setVaultAddress('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
+            }); 
+            
+            it("Update Hash", async function () {
+                await currentToken.setCollectionHash('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
             });
 
             it("Get Signature", async function () {

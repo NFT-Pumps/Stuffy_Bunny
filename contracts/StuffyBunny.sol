@@ -13,7 +13,6 @@ import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/finance/PaymentSplitter.sol";
 
-
 contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
     using Counters for Counters.Counter;
     using ECDSA for bytes32;
@@ -45,9 +44,10 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
     string _baseTokenURI;
     string public baseExtension = ".json";
     string public hiddenMetadataUri;
-
+    string public collectionHash = "B62528EA-5026B203-AA6365EA-C8E34DC9";
     address private _ContractVault = 0x0000000000000000000000000000000000000000;
-    address private _ClaimsPassSigner = 0x0000000000000000000000000000000000000000;
+    address private _ClaimsPassSigner =
+        0x0000000000000000000000000000000000000000;
 
     mapping(address => bool) whitelistedAddresses;
 
@@ -75,10 +75,11 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
         return signer == _ClaimsPassSigner;
     }
 
-    modifier isWhitelisted(uint8 amount, WhitelistClaimPass memory whitelistClaimPass) {
-        bytes32 digest = keccak256(
-            abi.encode(amount, msg.sender)
-        );
+    modifier isWhitelisted(
+        uint8 amount,
+        WhitelistClaimPass memory whitelistClaimPass
+    ) {
+        bytes32 digest = keccak256(abi.encode(amount, msg.sender));
 
         require(
             _isVerifiedWhitelistClaimPass(digest, whitelistClaimPass),
@@ -94,8 +95,13 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
         address _signer,
         string memory __baseTokenURI,
         string memory _hiddenMetadataUri,
-        address[] memory _payees, uint256[] memory _shares
-    ) ERC721(contractName, contractSymbol)  PaymentSplitter(_payees, _shares) payable {
+        address[] memory _payees,
+        uint256[] memory _shares
+    )
+        payable
+        ERC721(contractName, contractSymbol)
+        PaymentSplitter(_payees, _shares)
+    {
         _ContractVault = _vault;
         _ClaimsPassSigner = _signer;
         _tokenSupply.increment();
@@ -103,9 +109,8 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
         _safeMint(msg.sender, 1);
         _baseTokenURI = __baseTokenURI;
         hiddenMetadataUri = _hiddenMetadataUri;
-        
     }
-    
+
     function withdraw() external onlyOwner {
         payable(_ContractVault).transfer(address(this).balance);
     }
@@ -120,11 +125,17 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
             "Not enough ether sent"
         );
 
-        uint256 supply = _tokenSupply.current();        
+        uint256 supply = _tokenSupply.current();
 
         require(privateMintIsOpen == true, "Claim Mint Closed");
-        require(quantity + (supply-1) <= MAX_TOKENS, "Not enough tokens remaining");
-        require(quantity <= claimable, "Mint quantity can't be greater than claimable");
+        require(
+            quantity + (supply - 1) <= MAX_TOKENS,
+            "Not enough tokens remaining"
+        );
+        require(
+            quantity <= claimable,
+            "Mint quantity can't be greater than claimable"
+        );
         require(quantity > 0, "Mint quantity must be greater than zero");
         require(quantity <= whitelistMintMaxLimit, "Mint quantity too large");
         require(
@@ -132,14 +143,13 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
             "Not enough free mints remaining"
         );
 
-        // giveAwayMints[msg.sender] += quantity;        
+        // giveAwayMints[msg.sender] += quantity;
 
         for (uint256 i = 0; i < quantity; i++) {
             _tokenSupply.increment();
             _freeSupply.increment();
             _safeMint(msg.sender, supply + i);
         }
-
     }
 
     function openMint(uint256 quantity) external payable {
@@ -147,7 +157,10 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
         uint256 supply = _tokenSupply.current();
         require(publicMintIsOpen == true, "Public Mint Closed");
         require(quantity <= publicMintMaxLimit, "Mint amount too large");
-        require(quantity + (supply-1) <= MAX_TOKENS, "Not enough tokens remaining");
+        require(
+            quantity + (supply - 1) <= MAX_TOKENS,
+            "Not enough tokens remaining"
+        );
 
         for (uint256 i = 0; i < quantity; i++) {
             _tokenSupply.increment();
@@ -157,7 +170,10 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
 
     function teamMint(address to, uint256 amount) external onlyOwner {
         uint256 supply = _tokenSupply.current();
-        require((supply-1) + amount <= MAX_TOKENS, "Not enough tokens remaining");
+        require(
+            (supply - 1) + amount <= MAX_TOKENS,
+            "Not enough tokens remaining"
+        );
         for (uint256 i = 0; i < amount; i++) {
             _tokenSupply.increment();
             _safeMint(to, supply + i);
@@ -182,6 +198,10 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
 
     function setTransactionMintLimit(uint256 newMintLimit) external onlyOwner {
         publicMintMaxLimit = newMintLimit;
+    }
+
+    function setCollectionHash(string calldata newHash) external onlyOwner {
+        collectionHash = newHash;
     }
 
     function setWhitelistTransactionMintLimit(uint256 newprivateMintLimit)
@@ -284,6 +304,4 @@ contract StuffyBunny is Ownable, ERC721, ERC721URIStorage, PaymentSplitter {
     function setSignerAddress(address newSigner) external onlyOwner {
         _ClaimsPassSigner = newSigner;
     }
-
-
 }
