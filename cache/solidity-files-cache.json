@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/jessicagreene/Documents/GitHub/Stuffy_Bunny/contracts/GenericNFTPumpContract.sol": {
+    "/Users/jessicagreene/Documents/GitHub/Stuffy_Bunny/contracts/StuffyBunny.sol": {
       "lastModificationDate": 1653064179301,
       "contentHash": "575451338d5fbf362da79c4da2e7a8d0",
-      "sourceName": "contracts/GenericNFTPumpContract.sol",
+      "sourceName": "contracts/StuffyBunny.sol",
       "solcConfig": {
         "version": "0.8.11",
         "settings": {
@@ -40,7 +40,7 @@
         "^0.8.11"
       ],
       "artifacts": [
-        "GenericNFTPumpContract"
+        "StuffyBunny"
       ]
     },
     "/Users/jessicagreene/Documents/GitHub/Stuffy_Bunny/node_modules/@openzeppelin/contracts/access/Ownable.sol": {

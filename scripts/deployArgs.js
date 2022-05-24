@@ -4,7 +4,7 @@ module.exports = [
 
     '0x7E34E5798996bCd712d46Eb61b704CCA660f9489',
     '0xc01aC67ba14F13Af4fCD5b4ba3784F39a703cda0',   
-    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/json/json/',
+    'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/json/',
     'https://public-pre-ipfs.s3.amazonaws.com/StuffyBunnyNFT/assets/Unrevealed.json',
 
 
