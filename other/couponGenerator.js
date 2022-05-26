@@ -1,4 +1,4 @@
-//npx hardhat run .\other\couponGenerator.js 
+// npx hardhat run .\other\couponGenerator.js 
 const { ethers } = require("hardhat");
 require('dotenv').config();
 const fs = require("fs");
@@ -276,7 +276,13 @@ async function getClaimCodes() {
         { address: '0x01805FA1d279434178E4dD73e848EaCCD93D9778', qty: 50 },
         { address: '0xE97562FB75dD09a0CD44F185c4C9B6FB07f05332', qty: 50 },
         { address: '0x75d6c938552E4d808Ca4e9881308972905fBD2CB', qty: 50 },
-        { address: '0xBcdfF9cd33C047D10fba830B9E2fa70FC67B0288', qty: 50 }
+        { address: '0xb1Ef4840213e387e5Cebcf5472d88fE9C2775dFa', qty: 50 },
+        { address: '0x0319e1d708EB4fAa2090d564A04622c0C38F69Ca', qty: 50 },
+        { address: '0x2d4D0C9290B8647C8283aBB77058Db3bD8B71461', qty: 50 },
+        { address: '0xfaB03C6555827586Fd3D8885920B1B715A1EbAEA', qty: 50 },
+        { address: '0x1a68518a141e7B0E85E24281ec1779f02fa6D7F3', qty: 50 },
+        { address: '0x75d6c938552E4d808Ca4e9881308972905fBD2CB', qty: 50 },
+        { address: '0x039d959d12C66CC98Bbe9B7f384dD981697bC98E', qty: 50 }
     ]
 
     function createCoupon(hash, signerPvtKey) {

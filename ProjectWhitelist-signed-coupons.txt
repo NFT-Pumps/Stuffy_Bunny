@@ -1663,12 +1663,52 @@
       v: 28
     }
   },
-  '0xBcdfF9cd33C047D10fba830B9E2fa70FC67B0288': {
+  '0xb1Ef4840213e387e5Cebcf5472d88fE9C2775dFa': {
     q: 50,
     whitelistClaimPass: {
-      r: '0xcf5e6e7806c9839d9b50e95057fff150b1a732625298e5fb233e9be3d499843b',
-      s: '0x7e872563f6044e223957d087f84c5efe86ecafb9ac2eb9674e30d9f03943413a',
+      r: '0x44e748de74556abac9dc7d35050d59301eb9eb2532dcf3c2b2052e78d074894b',
+      s: '0x108ea1efdc780dad4ac74a69101cb25bec35b74f1a2947888d42af29799763ca',
       v: 27
+    }
+  },
+  '0x0319e1d708EB4fAa2090d564A04622c0C38F69Ca': {
+    q: 50,
+    whitelistClaimPass: {
+      r: '0xd1a7dc783b34346c518459e8078bec421a89ec9841242ef1d3a6ffb7625047c9',
+      s: '0x6ecb7bb0b1d1127b0497d1cc7e75061329e2dbc525f86bc4b2d1ea559f15406c',
+      v: 28
+    }
+  },
+  '0x2d4D0C9290B8647C8283aBB77058Db3bD8B71461': {
+    q: 50,
+    whitelistClaimPass: {
+      r: '0xb5fc0fd76c52c378f40599a1d63b1a9c187b2b9013a5c61d3cd6585a19d2fafb',
+      s: '0x76ebfbf4e2d9680abb92075da1f9589c88e270b70b21f98ee7e1653e16069014',
+      v: 28
+    }
+  },
+  '0xfaB03C6555827586Fd3D8885920B1B715A1EbAEA': {
+    q: 50,
+    whitelistClaimPass: {
+      r: '0x5eabc367920b2a860eed879b867a738ff3af486640467c373d1181076124c30d',
+      s: '0x1fdb0f5319681978a93a1ec0cc85a2dcf7a961d2e08b56bff123e0d922fa1961',
+      v: 27
+    }
+  },
+  '0x1a68518a141e7B0E85E24281ec1779f02fa6D7F3': {
+    q: 50,
+    whitelistClaimPass: {
+      r: '0x3bbb4c78670eb1f686fd03a4c70933e551324ff9ce9ec24270249dd3842eeecc',
+      s: '0x7573013b22f018f5bc8ce93b153e2427561f287d95fd99566eb99c80f5cb8d64',
+      v: 27
+    }
+  },
+  '0x039d959d12C66CC98Bbe9B7f384dD981697bC98E': {
+    q: 50,
+    whitelistClaimPass: {
+      r: '0xcfd93f9a768e4f2536bb4ddb403cda544008a2cb200df650d93b9782637bcee1',
+      s: '0x40e8dd9c15eed292cb202f54537b929f92ee0084ca19630ab376852e51377595',
+      v: 28
     }
   }
 }
