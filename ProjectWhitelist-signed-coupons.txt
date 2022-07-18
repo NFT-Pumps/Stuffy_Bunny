@@ -791,12 +791,20 @@
       v: 27
     }
   },
-  '0xe57aa96aE6DEd8F909aEE38E44794929682fda17': {
+  '0xCd43AdcB61949ab14D3f4574BFbDA53d46389715': {
     q: 2,
     whitelistClaimPass: {
-      r: '0x64e3618bc29357718c73b13425049fac821badec9b877e7565dda7d6e3410fa0',
-      s: '0x7e88f30dfbbe526dad4c0f999849193bfec9b791f705b304b554c32ae455a4dd',
+      r: '0x013fad2f839368e422c33a6f6852a0775549716d64c8767f9e90e60218d0b94c',
+      s: '0x6ba0359bdcf7ce0a1b7af6f790b564db40a105c4f83daf36d66f10e0f0d2ec52',
       v: 27
+    }
+  },
+  '0xe57aa96aE6DEd8F909aEE38E44794929682fda17': {
+    q: 8,
+    whitelistClaimPass: {
+      r: '0xe0cf77f56aedbf683c6da6bb22a51b141a9b36dde0c7e6dc5379f3e6520409ed',
+      s: '0x37285d31bf97f92f08c7f9d5356e16f13aab36ced155044432ae50c452478900',
+      v: 28
     }
   },
   '0x68798f112b93D968d3dE696cDc714102B6A99515': {
